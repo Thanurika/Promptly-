@@ -1,11 +1,13 @@
-/* Reset default page margins */
+/* Reset default page margins and prevent scrollbars */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     font-family: system-ui, -apple-system, sans-serif;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Keeps the whole website locked strictly to the viewport */
 }
 
 /* Header Banner Styles */
@@ -15,14 +17,16 @@ header {
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    z-index: 1000; /* Makes sure the banner sits on top of the map */
+    z-index: 1000; /* Makes sure the banner sits on top of the map layer */
 }
 
 header h3 {
     margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
-/* Form Styles */
+/* Form Layout Styles */
 #promptForm {
     display: flex;
     gap: 10px;
@@ -30,30 +34,33 @@ header h3 {
 }
 
 #promptForm input {
-    padding: 8px 12px;
-    width: 300px;
-    border-radius: 4px;
+    padding: 10px 14px;
+    width: 320px;
+    border-radius: 6px;
     border: none;
     font-size: 14px;
+    outline: none;
 }
 
 #promptForm button {
-    padding: 8px 16px;
+    padding: 10px 20px;
     background-color: #ff4757;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
     font-size: 14px;
+    transition: background-color 0.2s ease;
 }
 
 #promptForm button:hover {
     background-color: #ff6b81;
 }
 
-/* Map Container Styles (Takes up remaining screen space) */
+/* Map Container Styles (Takes up all remaining screen space) */
 #map {
     flex: 1;
     width: 100%;
+    background-color: #aad3df; /* Gives a clean blue water background while map tiles load */
 }

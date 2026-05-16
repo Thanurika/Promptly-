@@ -23,12 +23,21 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
-        // 1. Initialize a flat world map, centered globally, zoomed out
-        const map = L.map('map').setView([20, 0], 2);
+        // 1. Initialize a flat world map with ALL zooming, dragging, and panning completely disabled
+        const map = L.map('map', {
+            zoomControl: false,       // Removes the +/- buttons from the screen
+            boxZoom: false,           // Disables zooming by dragging a box
+            doubleClickZoom: false,   // Disables zooming when double-clicking
+            dragging: false,          // Disables dragging the map around
+            keyboard: false,          // Disables panning the map with arrow keys
+            scrollWheelZoom: false,   // Disables zooming with the mouse wheel
+            tap: false                // Disables double-tap zoom on mobile devices
+        }).setView([15, 0], 2);       // Sets the center point adjusted to fit the whole world nicely
 
-        // 2. Add the map graphics layer (OpenStreetMap)
+        // 2. Add the map graphics layer and force it to stay in bounds without looping/wrapping
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
+            attribution: '&copy; OpenStreetMap contributors',
+            noWrap: true              // Stops the world from repeating infinitely horizontally
         }).addTo(map);
 
         let userLocation = null;
@@ -63,7 +72,7 @@
             // Create a pin marker on the map and bind the popup text
             L.marker([userLocation.lat, userLocation.lng])
                 .addTo(map)
-                .bindPopup(`<div style="font-size: 14px; font-weight: bold;">${message}</div>`)
+                .bindPopup(`<div style="font-size: 14px; font-weight: bold; color: #1e1e24;">${message}</div>`)
                 .openPopup();
 
             // Clear the input field for the next entry
