@@ -1,66 +1,108 @@
-/* Reset default page margins and prevent scrollbars */
+/* Import Handwritten (Caveat) and Cursive (Sacramento) Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Sacramento&display=swap');
+
+/* Reset body guidelines using the handwriting font as the default */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'Caveat', cursive, system-ui;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Keeps the whole website locked strictly to the viewport */
+    overflow: hidden; 
 }
 
-/* Header Banner Styles */
+/* Header Banner Layout */
 header {
     background-color: #1e1e24;
-    color: #ffffff;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    z-index: 1000; /* Makes sure the banner sits on top of the map layer */
+    z-index: 1000; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Cursive Question Prompt Styling */
 header h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-family: 'Sacramento', cursive;
+    color: #E30B5D; 
+    margin: -8px 0 -5px 0;
+    font-size: 1.7rem; 
+    font-weight: 490;
+    max-width: 900px;
 }
 
-/* Form Layout Styles */
+/* Timer tracking keeps standard system sans-serif font */
+#timerContainer {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: #A9203E;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#timer {
+    color: #A9203E; 
+}
+
+/* Submission Form styling */
 #promptForm {
     display: flex;
     gap: 10px;
     justify-content: center;
+    width: 100%;
 }
 
 #promptForm input {
-    padding: 10px 14px;
-    width: 320px;
+    font-family: 'Caveat', cursive;
+    padding: 6px 14px;
+    width: 360px;
     border-radius: 6px;
     border: none;
-    font-size: 14px;
+    font-size: 20px; 
     outline: none;
+    color: #1e1e24;
 }
 
 #promptForm button {
-    padding: 10px 20px;
-    background-color: #ff4757;
+    font-family: 'Caveat', cursive;
+    padding: 6px 20px;
+    background-color: #0077b6; 
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
     transition: background-color 0.2s ease;
 }
 
 #promptForm button:hover {
-    background-color: #ff6b81;
+    background-color: #0096c7;
 }
 
-/* Map Container Styles (Takes up all remaining screen space) */
+/* Map Screen Box styles */
 #map {
     flex: 1;
     width: 100%;
-    background-color: #aad3df; /* Gives a clean blue water background while map tiles load */
+    background-color: #2b1b3d; /* Rich, dark violet base layer */
+    cursor: crosshair; 
+}
+
+/* 🪐 DEEP INK-PURPLE DREAMYSCAPE FILTER 🪐
+   This transforms the dark base layout tiles into glowing purple landmasses 
+   with highly pronounced, dark, clean, non-blurry continent silhouettes. */
+.leaflet-tile-container {
+    filter: invert(0.87) hue-rotate(150deg) saturate(1.0) brightness(1.1) contrast(1.2);
+}
+
+/* Override Leaflet popup default text behavior to match styling */
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
